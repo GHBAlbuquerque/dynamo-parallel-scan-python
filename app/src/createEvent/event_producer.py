@@ -47,9 +47,11 @@ class EventProducer(MessageProducer):
     
     def convert_to_event(self, item):
         return {
-            "id": item.get("id", {}).get("S", ""),
+            "PK": item.get("PK", {}).get("S", ""),
+            "SK": item.get("SK", {}).get("S", ""),
             "name": item.get("name", {}).get("S", ""),
-            "description": item.get("description", {}).get("S", "")
+            "description": item.get("description", {}).get("S", ""),
+            "createdAt": item.get("createdAt", {}).get("S", "")
         }
 
 

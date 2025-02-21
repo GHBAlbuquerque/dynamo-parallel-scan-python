@@ -11,10 +11,21 @@ def random_date(start, end):
 def generate_dynamodb_records_json(file_name, num_records): 
     with open(file_name, mode='w') as file: 
         for i in range(num_records): 
+
+            # Generate random PK
+            pk = str(uuid.uuid4())
+
+            # Generate random SK
+            sk = random.randint(100, 999)
+
             record = {
-                "id": str(uuid.uuid4()),
-                "name": f"Name {i}",
-                "age": random.randint(18, 100),
+                "PK": {"S": pk},
+                "SK": {"N": str(sk)},
+                "name": {"S": random.choice(["John", "Jane", "Alice", "Bob", "Charlie"])},
+                "description": f"Description {i}",
                 "created_at": random_date(datetime(2020, 1, 1), datetime.now()).isoformat()
             }
+            
             file.write(json.dumps(record) + '\n')
+
+generate_dynamodb_records_json('dynamodb_records.json', 1000)
