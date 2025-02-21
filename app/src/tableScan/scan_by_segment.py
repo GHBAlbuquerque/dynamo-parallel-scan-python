@@ -1,6 +1,7 @@
 import asyncio
 from aiobotocore.session import get_session
 from src.createMessage.MessageProducer import MessageProducer
+from src.createEvent.event_producer import EventProducer
 from aws_lambda_powertools import Logger
 
 logger = Logger()
@@ -8,8 +9,8 @@ logger = Logger()
 
 class TableScanProcessor:
 
-    def __init__(self, message_producer : MessageProducer):
-        self.event_producer = message_producer
+    def __init__(self, event_producer : EventProducer):
+        self.event_producer = event_producer
 
 
     async def scan_dynamodb_with_segments(self, table_name, attribute_name,
