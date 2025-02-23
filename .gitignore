@@ -171,4 +171,4 @@ cython_debug/
 .pypirc
 
 # misc
-dynamodb_records.json
+dynamodb_records*.json
