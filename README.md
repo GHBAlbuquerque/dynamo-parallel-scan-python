@@ -54,7 +54,7 @@ Testing locally:
     ```
 3) Create a SQS queue on LocalStack:
     ```
-    aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name parallel-scan-queue
+        aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name parallel-scan-queue
     ```
 
 4) Create a virtual environment for your python application by running the following commands:
@@ -65,7 +65,7 @@ Testing locally:
     ```
 5) Install python requirements for requirements.txt file:
     ```
-    python3 -m pip install -r requirements.txt
+        python3 -m pip install -r requirements.txt
     ```
 6) Use the python script on 'localExec/databaseLoad/createTableRecords/TableRecordsProducerJSONImportFile.py' to populate the DynamoDB table:
     ```
