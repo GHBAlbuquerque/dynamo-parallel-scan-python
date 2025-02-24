@@ -59,7 +59,6 @@ Testing locally:
 
 4) Create a virtual environment for your python application by running the following commands:
     ```
-        pip3 install virtualenv
         python3 -m venv .venv
         source .venv/bin/activate
     ```
