@@ -1,6 +1,7 @@
 import asyncio
 import yaml
 
+from typing import Any
 from aiobotocore.session import get_session
 from src.createMessage.MessageProducer import MessageProducer
 from src.createEvent.event_producer import EventProducer
@@ -17,7 +18,7 @@ class TableScanProcessor:
 
     async def scan_dynamodb_with_segments(self, table_name, attribute_name,
                                           sk_filter, segment, total_segments,
-                                          limit_of_rows, batch_size=500):
+                                          limit_of_rows, batch_size=500) -> dict[str, Any]:
         
         with open('app/config.yaml', 'r') as file:
             config = yaml.safe_load(file)
