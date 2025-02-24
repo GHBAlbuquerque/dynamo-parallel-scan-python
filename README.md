@@ -57,13 +57,23 @@ Testing locally:
     aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name parallel-scan-queue
     ```
 
-4) Use the python script on 'localExec/databaseLoad/createTableRecords/TableRecordsProducerJSONImportFile.py' to populate the DynamoDB table:
+4) Create a virtual environment for your python application by running the following commands:
+    ```
+        pip3 install virtualenv
+        python3 -m venv .venv
+        source .venv/bin/activate
+    ```
+5) Install python requirements for requirements.txt file:
+    ```
+    python3 -m pip install -r requirements.txt
+    ```
+6) Use the python script on 'localExec/databaseLoad/createTableRecords/TableRecordsProducerJSONImportFile.py' to populate the DynamoDB table:
     ```
         python3 /localExec/databaseLoad/LoadTable.py
     ```
-5) Move the 'localExec/test_local.py' file to the 'app' folder
-6) Change the parameters values on 'app/config.yaml' if needed
-7) Use the python script moved to the app folder to run the scan:
+7) Move the 'localExec/test_local.py' file to the 'app' folder
+8) Change the parameters values on 'app/config.yaml' if needed
+9) Use the python script moved to the app folder to run the scan:
     ```
         python3 /app/test_local.py
     ```
