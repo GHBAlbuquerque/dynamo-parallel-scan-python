@@ -9,7 +9,7 @@ This code is meant to be used on a Lambda function. The handler input is an even
 - the total number of segments;
 - row limit per segment.
 
-Json payload:
+JSON payload:
 ```
 {
 	"current_segment": 10,
@@ -34,17 +34,17 @@ The original solutions architecture for this solution is composed of
 
 Necessary tools:
 
-LocalStack - https://github.com/localstack/localstack.git
-Docker - https://www.docker.com/
-AWS CLI - https://aws.amazon.com/pt/cli/
-Python3 - https://www.python.org/downloads/
++ LocalStack - https://github.com/localstack/localstack.git
++ Docker - https://www.docker.com/
++ AWS CLI - https://aws.amazon.com/pt/cli/
++ Python3 - https://www.python.org/downloads/
 
 * Tested on local stack.
 [LocalStack configutation and use reference](https://alcantara-afonso.medium.com/localstack-aws-in-your-machine-and-for-free-its-a-dream-come-true-94437dc1c48)
 
 Testing locally:
 1) Follow the instructions on the link above to create a LocalStack container on Docker
-2) Use the following commands to create a DynamoDB table on LocalStack:
+2) Use the following command to create a DynamoDB table on LocalStack:
     ```
     aws --endpoint-url=http://localhost:4566 dynamodb create-table \
         --table-name TestTable \
