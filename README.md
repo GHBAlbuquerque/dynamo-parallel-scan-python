@@ -1,13 +1,22 @@
 # DynamoDB Parallel Scan using Python
 ## dynamo-parallel-scan-python
 
-Small project created to do parallelyze a scan opration on a Dynamo table. 
+Small project created to parallelyze a scan operation on a DynamoDB table. 
 
-This code is meant to be used on a Lambda function, receiving an event with three main informations:
+This code is meant to be used on a Lambda function. The handler input is an event with three main informations:
 
 - the current segment;
 - the total number of segments;
 - row limit per segment.
+
+Json payload:
+```
+{
+	"current_segment": 10,
+	"total_segments": 300,
+	"limit_of_rows": 3000
+}
+```
 
 By using asynchronous operations the segment scan is parallelyzed. Each row retrieved is then transformed into an SQS event and posted on a queue.
 
