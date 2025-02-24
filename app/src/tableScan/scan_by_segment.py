@@ -18,7 +18,9 @@ class TableScanProcessor:
                                           limit_of_rows, batch_size=500):
 
         session = get_session()
-        async with session.create_client('dynamodb', region_name='us-east-1') as client: # Create Dynamo client for connection
+        async with session.create_client('dynamodb', 
+                                         region_name='us-east-1',
+                                         endpoint_url='http://localhost:4566') as client: # Create Dynamo client for connection
             try:
                 filter_expression = f"begins_with({attribute_name}, :sk_filter)"
                 expression_attribute_values = {":sk_filter": {"S": sk_filter}}
