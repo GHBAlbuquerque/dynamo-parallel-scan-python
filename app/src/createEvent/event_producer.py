@@ -1,6 +1,6 @@
 import asyncio
 import json
-import re
+import yaml
 
 from aiobotocore.session import get_session
 from aws_lambda_powertools import Logger
@@ -12,15 +12,19 @@ logger = Logger()
 class EventProducer(MessageProducer):
 
     def __init__(self):
-        self.session = get_session()
-        self.queue_url = 'https://sqs.us-east-1.amazonaws.com/123456789012/event-queue' # Your created queue URL
+        with open('app/config.yaml', 'r') as file:
+            config = yaml.safe_load(file)
+
+            self.session = get_session()
+            self.queue_url = config['sqs']['queue_url'] # Your created queue URL
+            self.endpoint_url = config['sqs']['endpoint_url']
 
     # Event sender method
     async def send_event(self, items):
         logger.info(f"Sending {len(items)} items to the queue")
         semaphore = asyncio.Semaphore(5) # Limit the number of concurrent requests
         
-        async with self.session.create_client('sqs', region_name='us-east-1') as client:
+        async with self.session.create_client('sqs', region_name='us-east-1', endpoint_url=self.endpoint_url) as client:
             tasks = [self.send_message_with_semaphore(semaphore, client, item) for item in items] # Is a list comprehension in Python that creates a list of coroutine objects. Each coroutine object is an instance of the send_message_with_semaphore coroutine, which is called for each item in the items list.
             items.clear()
             await asyncio.gather(*tasks)

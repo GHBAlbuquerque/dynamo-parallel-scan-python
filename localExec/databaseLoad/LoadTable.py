@@ -7,10 +7,10 @@ dynamodbclient=boto3.resource('dynamodb', endpoint_url='http://localhost:4566')
 
 table = dynamodbclient.Table('TestTable')
 
+generate_dynamodb_records_json('dynamodb_records.json', 30000)
+
 with open('dynamodb_records.json', 'r') as myfile:
     data=myfile.read()
-
-generate_dynamodb_records_json('dynamodb_records.json', 5000)
 
 try: 
     objects = json.loads(data)

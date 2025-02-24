@@ -1,0 +1,17 @@
+# config.yaml
+dynamodb:
+  table_name: TestTable
+  region: us-east-1
+  endpoint_url: http://localhost:4566
+
+sqs:
+  queue_name: TestQueue
+  region: us-east-1
+  endpoint_url: http://localhost:4566
+  queue_url: http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/parallel-scan-queue
+
+scan:
+  attribute_name: SK
+  sk_filter: PREFIX-
+  total_segments: 5
+  limit_of_rows: 2000

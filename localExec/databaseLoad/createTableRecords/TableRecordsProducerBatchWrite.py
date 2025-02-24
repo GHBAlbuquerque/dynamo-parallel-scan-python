@@ -25,7 +25,7 @@ def generate_dynamodb_records_json(file_name, num_records):
                 "PutRequest": {
                     "Item": {
                         "PK": {"S": pk},
-                        "SK": {"S": str(sk)},
+                        "SK": {"S": "PREFIX-"+str(sk)},
                         "name": {"S": random.choice(["John", "Jane", "Alice", "Bob", "Charlie"])},
                         "description": {"S" : f"Description {i}"},
                         "createdAt": {"S" :random_date(datetime(2020, 1, 1), datetime.now()).isoformat()}

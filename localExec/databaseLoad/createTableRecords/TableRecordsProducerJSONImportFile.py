@@ -33,7 +33,7 @@ def generate_dynamodb_records_json(file_name, num_records):
 
                     record = {
                         "PK":  pk,
-                        "SK":str(sk),
+                        "SK": "PREFIX-"+str(sk),
                         "name": random.choice(["John", "Jane", "Alice", "Bob", "Charlie"]),
                         "description":  f"Description{i}",
                         "createdAt": random_date(datetime(2020, 1, 1), datetime.now()).isoformat()

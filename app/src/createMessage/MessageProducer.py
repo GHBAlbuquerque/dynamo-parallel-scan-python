@@ -2,5 +2,5 @@ from abc import abstractmethod, ABC
 
 class MessageProducer(ABC):
     @abstractmethod
-    def produce(self, message):
+    def send_event(self, message):
         pass
