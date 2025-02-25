@@ -12,7 +12,7 @@ logger = Logger()
 class EventProducer(MessageProducer):
 
     def __init__(self):
-        with open('app/config.yaml', 'r') as file:
+        with open('config.yaml', 'r') as file:
             config = yaml.safe_load(file)
 
             self.session = get_session()

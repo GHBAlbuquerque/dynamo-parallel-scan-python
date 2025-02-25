@@ -20,7 +20,7 @@ class TableScanProcessor:
                                           sk_filter, segment, total_segments,
                                           limit_of_rows, batch_size=500) -> dict[str, Any]:
         
-        with open('app/config.yaml', 'r') as file:
+        with open('config.yaml', 'r') as file:
             config = yaml.safe_load(file)
 
             session = get_session()
