@@ -1,3 +1,4 @@
+import asyncio
 import unittest
 
 from unittest.mock import patch, MagicMock
@@ -42,3 +43,32 @@ class TestEventProducer(unittest.IsolatedAsyncioTestCase):
         _, kwargs = mock_client.send_message.call_args
         self.assertEqual(kwargs['QueueUrl'], self.producer.queue_url)
         self.assertIn('MessageBody', kwargs)
+
+    @patch('aiobotocore.session.get_session')
+    async def test_send_message_with_semaphore(self, mock_get_session):
+        # Setup
+        mock_session = MagicMock()
+        mock_client = MagicMock()
+        mock_get_session.return_value = mock_session
+        mock_session.create_client.return_value.__aenter__.return_value = mock_client
+
+        semaphore = asyncio.Semaphore(1)
+        event = self.producer.convert_to_event(self.item)
+
+        await self.producer.send_message_with_semaphore(semaphore, mock_client, event)
+
+        mock_client.send_message.assert_called_once()
+
+    @patch('aiobotocore.session.get_session')
+    async def test_send_event_failure(self, mock_get_session):
+        mock_session = MagicMock()
+        mock_client = MagicMock()
+        mock_get_session.return_value = mock_session
+        mock_session.create_client.return_value.__aenter__.return_value = mock_client
+        mock_client.send_message.side_effect = Exception('Something went wrong')
+
+        event = self.producer.convert_to_event(self.item)
+
+        await self.producer.send_message(mock_client, event)
+
+        mock_client.send_message.assert_called_once()
