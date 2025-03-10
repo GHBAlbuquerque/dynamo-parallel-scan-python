@@ -72,9 +72,14 @@ Testing locally:
     ```
 7) Move the 'localExec/test_local.py' file to the 'app' folder
 8) Change the parameters values on 'app/config.yaml' if needed
-9) Use the python script moved to the app folder to run the scan:
+9) Change directories using 'cd app' to run code from 'app' dir. Use the python script moved to the app folder to run the scan:
     ```
-        python3 /app/test_local.py
+        python3 test_local.py
+    ```
+10) To run unit tests, run the following commands: 
+    ```
+        python3 -m unittest tests.src.test_event_producer
+        python3 -m unittest tests.src.test_scan_by_segment
     ```
 
 
