@@ -4,7 +4,7 @@ import yaml
 from src.createEvent.event_producer import EventProducer
 from src.tableScan.scan_by_segment import TableScanProcessor
 
-with open('app/config.yaml', 'r') as file:
+with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
 def lambda_handler(event: dict, context): 

@@ -172,3 +172,4 @@ cython_debug/
 
 # misc
 dynamodb_records*.json
+.idea

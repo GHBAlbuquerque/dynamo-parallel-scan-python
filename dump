@@ -1,0 +1,1 @@
+aws --endpoint-url=http://localhost:4566 dynamodb put-item --table-name TestTable  --item '{"PK": {"S": "2bb9f0ea-c8b3-4c0c-b807-4d3301c639e3"}, "SK": {"S": “PREFIX-485"}, "name": {"S": "Alice"}, "description": {"S": "Description 0"}, "createdAt": {"S": "2021-11-17T14:08:46"}}' --return-consumed-capacity TOTAL
