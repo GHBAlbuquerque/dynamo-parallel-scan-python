@@ -51,7 +51,7 @@ class BatchEventProducer(MessageProducer):
         except Exception as e:
             logger.error(f"Failed to send message: {e}")
 
-    def convert_to_event_in_batches(self, itens):
+    def convert_to_event_in_batches(self, items):
         return {
             "events": [
                 {
@@ -60,6 +60,6 @@ class BatchEventProducer(MessageProducer):
                     "name": item.get("name", {}).get("S", ""),
                     "description": item.get("description", {}).get("S", ""),
                     "createdAt": item.get("createdAt", {}).get("S", "")
-                } for item in itens
+                } for item in items
             ]
         }
